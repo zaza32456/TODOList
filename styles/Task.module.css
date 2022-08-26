@@ -1,0 +1,40 @@
+.flex {
+  display: flex;
+}
+
+.taskItem {
+  align-items: center;
+  width: 100%;
+  /* background-color: aquamarine; */
+  border: #666 1.6px solid;
+  margin: 0, auto;
+  border-radius: .8em;
+}
+
+.checkbox {
+  padding: 0 0 0.1em 0.3em;
+  /* padding 改为ICON后可删 */
+  font-size: 1.4rem;
+  flex: 0 0 12%;
+}
+
+.taskItemMain {
+  width: 78%;
+  color: #222;
+  font-weight: 500;
+  padding: 0.2em;
+  flex: 0 0 76%;
+  flex-direction: column;
+  line-height: 1.4;
+}
+
+.description {
+  color: #777;
+  font-size: 0.8em;
+}
+
+.delete {
+  font-size: 1.2rem;
+  flex: 0 0 12%;
+}
+

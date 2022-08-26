@@ -3,5 +3,4 @@ export type taskItem = {
   rank : 1 | 2 | 3 | 4 ,
   isFinish : boolean,
   description? : string,
-
 }
