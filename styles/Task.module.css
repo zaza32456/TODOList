@@ -2,27 +2,72 @@
   display: flex;
 }
 
+
+/* 任务分区 */
+
+.taskContainer + .taskContainer {
+  margin-top: 2rem;
+}
+
+
+
+/* 任务分区头部样式 */
+
+.taskHeader {
+  align-items: baseline;
+  font-size: 1rem;
+  margin-bottom: .8em;
+  padding-bottom: .2em;
+  padding-left: .4em;
+  border-left: #222 2px solid;
+}
+
+.date {
+  padding: 0px .2em;
+}
+.date::after {
+  padding: 0 .2em;
+  font-size: 1.2em;
+  font-weight: 800;
+  content: "·";
+}
+.count {
+  padding-left: .4em;
+  padding-right: .6em;
+  font-size: .8em;
+}
+
+
+
+/* 任务事项基本样式 */
+
+
 .taskItem {
+  text-align: center;
+  padding-top: .2em;
+  font-size: .8em;
   align-items: center;
   width: 100%;
   /* background-color: aquamarine; */
-  border: #666 1.6px solid;
+  border: #222 1.2px solid;
   margin: 0, auto;
   border-radius: .8em;
 }
 
-.checkbox {
-  padding: 0 0 0.1em 0.3em;
+ul > li > .taskItem > .checkbox {
+  padding: 0 0 0 .4em;
   /* padding 改为ICON后可删 */
   font-size: 1.4rem;
   flex: 0 0 12%;
 }
 
+
+
 .taskItemMain {
   width: 78%;
-  color: #222;
   font-weight: 500;
   padding: 0.2em;
+  padding-left: .4em;
   flex: 0 0 76%;
   flex-direction: column;
   line-height: 1.4;
@@ -34,7 +79,120 @@
 }
 
 .delete {
+  align-items: center;
+  justify-content: space-around;
   font-size: 1.2rem;
   flex: 0 0 12%;
 }
 
+.edit {
+  display: none;
+}
+
+
+/* 已完成样式 */
+
+.finished > .taskHeader {
+  color: #666;
+  border-left: #666 2px solid;
+}
+
+/* icon */
+.finished > .taskHeader > .icon {
+  display: block;
+  font-size: .7em;
+  /* transform: rotate(90deg); */
+  transition: transfrom .2s;
+}
+
+.finished > ul > li > .taskItem {
+  color: #777;
+  background-color: rgb(235, 234, 233);
+  border: rgb(233, 233, 233) 1px solid;
+}
+
+.finished > ul > li > .taskItem > .taskItemMain > .title {
+  color: rgb(78, 78, 78);
+}
+
+
+.largeView {
+  display: none;
+}
+
+@media screen and (min-width: 50em) {
+  .edit {
+    display: block;
+    font-size: 1em;
+  }
+
+  .largeView  {
+    margin-top: .6em;
+    display: inherit;
+    /* font-size: 1.2rem;
+    height: 2.4em;
+    font-weight: 400; */
+  }
+
+  .input {
+    display: block;
+    font-size: .9rem;
+    height: 1em;
+    padding: 1.3em 1em;
+    margin: 2em auto;
+    width:20%;
+    border-radius: 3em;
+    border: 1px solid rgb(115, 115, 115);
+
+    transition: width .2s ease-out;
+  }
+
+  .input:focus { 
+    
+    width: 68%; 
+    border: 1px solid #111;
+  }
+
+  .timeContainer {
+    align-items: center;
+
+    font-size: 3rem;
+    font-weight: 500;
+    letter-spacing: 0em;
+
+    line-height: .9;
+    flex-direction: column;
+
+  }
+
+  .day {
+    font-size: 1.2rem;
+    margin-top: .6em;
+    font-weight: 400;
+  }
+
+  /* 点击放大特效 */
+  .transfrom {
+    transition: .2s ease-out;
+    cursor: pointer;
+
+    padding: .1em .4em;
+  }
+
+  .transfrom:hover {
+    transition: .18s ease-in;
+    transform: scale(1.3, 1.3);
+
+  }
+
+  .edit + .transfrom:hover {
+    transform: scale(1.3, 1.3) rotate(90deg);
+  }
+
+  .unmake {
+    cursor: pointer;
+  }
+  .unmake:hover {
+    color: #333;
+  }
+}

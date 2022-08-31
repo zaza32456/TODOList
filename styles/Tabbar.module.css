@@ -1,6 +1,6 @@
 .tabContainer {
   position: fixed;
-  background-color: rgb(255, 143, 173);
+  background-color: rgb(255, 194, 210);
   left: 0;
   right: 0px;
   bottom: 0;
@@ -8,13 +8,16 @@
   border-top: 20%;
   border-top-left-radius: 1em;
   border-top-right-radius: 1em;
-  box-shadow: rgb(155, 231, 216) 0px -8px 0px -2px, rgb(189 189 189) 0px -9px 0px -2px, rgb(255, 244, 224) 0px -16px 0px -2px, rgb(189 189 189) 0px -17px 0px -2px;
+  box-shadow: rgb(186, 252, 212) 0px -8px 0px -1px, rgb(127, 179, 135) 0px -8.5px 0px -1px, rgb(255, 244, 224) 0px -16px 0px -2px, rgb(221, 205, 122) 0px -16.5px 0px -2px;
+
+  /* 高度 */
+  font-size: 1.3rem;
+  height: 2.4em;
 
   color: white;
   text-align: center;
-  font-size: 1.3rem;
+
   /* padding-top: .3em; */
-  height: 52px;
   line-height: 2.4;
   font-weight: 600;
 
@@ -22,4 +25,12 @@
 
 .tabContainer::before {
   content: "+ ";
+}
+
+/* 大屏幕上不显示 */
+@media screen and (min-width: 50em) {
+  .tabContainer {
+    display: none;
+  }
+
 }

@@ -1,14 +1,17 @@
 .container {
   padding: 0;
+  overflow: hidden;
 }
 
 .main {
   position: absolute;
-  top: 52px;
+  top: 2.52em;
   left: 0;
   right: 0;
-  bottom: 52px;
+  bottom: 0;
   padding: 1em 1.5em;
+  
+  /* z-index: -10; */
 }
 
 .footer {

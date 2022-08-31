@@ -2,6 +2,7 @@ html,
 body {
   padding: 0;
   margin: 0;
+
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
@@ -22,6 +23,12 @@ li {
   margin: 0;
 }
 
+li + li {
+  margin-top: .6em;
+}
+
+
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
@@ -32,6 +39,9 @@ li {
   }
 }
 
-li + li {
-  margin-top: .6em;
+@media screen and (min-width: 50em) {
+  :root {
+    font-size : calc(1vw + 0.6em);
+  }
+
 }
