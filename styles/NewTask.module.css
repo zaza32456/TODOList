@@ -1,0 +1,13 @@
+.createTask {
+  position: fixed;
+  background-color: white;
+  top: 30%;
+  bottom: 30%;
+  left: 26%;
+  right: 26%;
+  border-radius: .8em;
+  z-index: 20;
+  border: 1px solid #555;
+}
+
+

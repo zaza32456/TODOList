@@ -80,22 +80,22 @@ const Task = () => {
           {taskArray.filter( (item:taskItem) => !item.isFinish )
                     .map((item,i) => (
                       <li key={i}>
-                      <div className={`${styles.flex} ${styles.taskItem}`}>
-                        <div className={`${styles.checkbox}`}>
-                          <i className={`bx bxs-heart-circle ${styles.transfrom}`} ></i>
-                        </div>
-                          <div className={`${styles.flex} ${styles.taskItemMain}`}>
-                            <div className={styles.title}>
-                              {item.title}
-                            </div>
-                            <div className={styles.description}>
-                              {item.description}
-                            </div>
+                        <div className={`${styles.flex} ${styles.taskItem}`}>
+                          <div className={`${styles.checkbox}`}>
+                            <i className={`bx bxs-heart-circle ${styles.finishIcon}`} ></i>
                           </div>
-                        <div className={`${styles.flex} ${styles.delete}`}>
-                          <i className={`bx bx-pen ${styles.edit} ${styles.transfrom}`}></i>
-                          <i className={`bx bx-x ${styles.transfrom}`}></i>
-                        </div>
+                            <div className={`${styles.flex} ${styles.taskItemMain}`}>
+                              <div className={styles.title}>
+                                {item.title}
+                              </div>
+                              <div className={styles.description}>
+                                {item.description}
+                              </div>
+                            </div>
+                          <div className={`${styles.flex} ${styles.delete}`}>
+                            <i className={`bx bx-pen ${styles.edit} ${styles.transfrom}`}></i>
+                            <i className={`bx bx-x ${styles.transfrom}`}></i>
+                          </div>
                       </div>
                     </li>
           ))}

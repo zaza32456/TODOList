@@ -3,6 +3,7 @@
 }
 
 
+
 /* 任务分区 */
 
 .taskContainer + .taskContainer {
@@ -52,6 +53,7 @@
   border: #222 1.2px solid;
   margin: 0, auto;
   border-radius: .8em;
+  transition: .18s ease-out;
 }
 
 ul > li > .taskItem > .checkbox {
@@ -143,14 +145,13 @@ ul > li > .taskItem > .checkbox {
     width:20%;
     border-radius: 3em;
     border: 1px solid rgb(115, 115, 115);
-
     transition: width .2s ease-out;
   }
 
   .input:focus { 
     
     width: 68%; 
-    border: 1px solid #111;
+    border: 1.8px solid #111;
   }
 
   .timeContainer {
@@ -171,13 +172,29 @@ ul > li > .taskItem > .checkbox {
     font-weight: 400;
   }
 
-  /* 点击放大特效 */
-  .transfrom {
-    transition: .2s ease-out;
+  /* 悬停放大特效 */
+  .transfrom,
+  .finishIcon {
+    transition: .18s ease-out;
     cursor: pointer;
 
     padding: .1em .4em;
   }
+
+    /* 悬停在任务栏时完成图标放大 */
+  .unfinished > ul > li:hover > .taskItem {
+    transition: .1s ease-out;
+    cursor: pointer;
+    box-shadow: .2px 2px 4px #999;
+    transform: translate(0px, -1px);
+
+  }
+
+  .unfinished > ul > li:hover .finishIcon {
+    transition: .18s ease-in;
+    transform: scale(1.3, 1.3);
+  }
+    /* - */
 
   .transfrom:hover {
     transition: .18s ease-in;
