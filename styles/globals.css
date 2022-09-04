@@ -27,10 +27,15 @@ li + li {
   margin-top: .6em;
 }
 
-input{
+input,
+textarea {
   background:none;    
   outline:none;   
   border:none;
+}
+
+textarea {
+  cols:80;
 }
 
 

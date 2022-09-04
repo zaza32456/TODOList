@@ -94,26 +94,26 @@ ul > li > .taskItem > .checkbox {
 
 /* 已完成样式 */
 
-.finished > .taskHeader {
+.true > .taskHeader {
   color: #666;
   border-left: #666 2px solid;
 }
 
 /* icon */
-.finished > .taskHeader > .icon {
+.true > .taskHeader > .icon {
   display: block;
   font-size: .7em;
   /* transform: rotate(90deg); */
   transition: transfrom .2s;
 }
 
-.finished > ul > li > .taskItem {
+.true > ul > li > .taskItem {
   color: #777;
   background-color: rgb(235, 234, 233);
   border: rgb(233, 233, 233) 1px solid;
 }
 
-.finished > ul > li > .taskItem > .taskItemMain > .title {
+.true > ul > li > .taskItem > .taskItemMain > .title {
   color: rgb(78, 78, 78);
 }
 
@@ -185,7 +185,7 @@ ul > li > .taskItem > .checkbox {
   .unfinished > ul > li:hover > .taskItem {
     transition: .1s ease-out;
     cursor: pointer;
-    box-shadow: .2px 2px 4px #999;
+    /* box-shadow: .2px 2px 4px #999; */
     transform: translate(0px, -1px);
 
   }
@@ -213,3 +213,4 @@ ul > li > .taskItem > .checkbox {
     color: #333;
   }
 }
+

@@ -1,39 +1,39 @@
 {
   "task": [
     {
-      "id":1,
-      "title":"今天把HTML结构写完",
-      "isFinish": false,
-      "description":"参考xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-      "rank":3
+      "id": 1,
+      "title": "今天把HTML结构写完",
+      "description": "参考xxxxxxx",
+      "rank": 4,
+      "isFinish": true
     },
     {
-      "id":2,
-      "title":"把数据转移到JSON-server里",
-      "isFinish": false,
-      "description":"参考xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-      "rank":2
+      "id": 2,
+      "title": "把数据转移到JSON-server里",
+      "description": "参考xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "rank": 4,
+      "isFinish": true
     },
     {
-      "id":3,
-      "title":"做核酸",
+      "id": 3,
+      "title": "做核酸",
       "isFinish": true,
-      "description":"楼下24小时核酸点",
-      "rank":4
+      "description": "楼下24小时核酸点",
+      "rank": 4
     },
     {
-      "id":4,
-      "title":"晚上早睡早起",
-      "isFinish": false,
-      "description":"听心流",
-      "rank":2
+      "id": 4,
+      "title": "晚上早睡早起",
+      "description": "听心流",
+      "rank": 4,
+      "isFinish": true
     },
     {
-      "id":5,
-      "title":"吃好吃的",
+      "id": 5,
+      "title": "吃好吃的",
       "isFinish": true,
-      "description":"做牛肉意面的材料",
-      "rank":2
+      "description": "做牛肉意面的材料",
+      "rank": 2
     }
   ]
 }

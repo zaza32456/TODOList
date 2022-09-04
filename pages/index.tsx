@@ -20,7 +20,7 @@ const Home: NextPage = () => {
       </Head>
       <Header />
 
-      <NewTask />
+
 
       <main className={`${styles.main}`}>
         <Task />
