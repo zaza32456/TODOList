@@ -20,6 +20,7 @@ const Partition = ({text, isFinish, taskArray, children}) => {
   )
 }
 
+
 // ===========================   任务面板   ===========================
 
 const Task = () => {
@@ -51,11 +52,42 @@ const Task = () => {
   const [rank, setRank] = useState<0|1|2|3|4>(4)
   const [isFinish, setIsfinish] = useState(false)
   const [id , setId] = useState("")
-  // 编辑面板开关
+  // 编辑面板开关状态
   const [edit, setEdit] = useState(false)
-  
 
-  // 编辑已有任务
+  // 清空状态
+  const clearUp = () => {
+    setTitle("")
+    setDescription("")
+    setRank(3)
+    setId("")
+  }
+  
+  // 添加新任务
+  const addTask = () => {
+      console.log("click addTask")
+      const taskObeject:taskItem = {
+        id : (Math.random()+ new Date().getTime()).toString(32).slice(0,8),
+        title : title ,
+        description : description,
+        rank : rank? rank : 3,
+        isFinish : false,
+        date : new Date().toLocaleDateString(),
+      }
+      console.log("创建任务", taskObeject)
+  
+        // 改变服务器端数据
+      axios.post(`http://localhost:3001/task/`, taskObeject)
+        .then(res =>{
+          console.log("put", res.data)
+          // 改变客户端状态
+          setTaskArray(taskArray.concat(taskObeject))
+          clearUp()
+        })
+
+  }
+
+  // 修改已有任务
   const editTask = (e) => {
     const taskObeject:taskItem = {
       id : id,
@@ -63,20 +95,26 @@ const Task = () => {
       description : description,
       rank: rank,
       isFinish: isFinish,
-      // date? date : date : new Date().toLocaleDateString(),
     }
     console.log("提交任务", taskObeject)
 
-
-    // 改变服务器端数据
+      // 改变服务器端数据
     axios.put(`http://localhost:3001/task/${id}`, taskObeject)
       .then(res =>{
-        console.log("put", res.data)
         // 改变客户端状态
         setTaskArray(taskArray.map(item => item.id !==id?item:taskObeject))
         
+        clearUp()
+
         setEdit(false)
       })
+  }
+
+  // 删除未完成任务
+  const del = (id) => {
+    axios.delete(`http://localhost:3001/task/${id}`)
+    const array = taskArray.filter(task => task.id !== id)
+    setTaskArray(array)
   }
 
   const inputTitle = (e) => {
@@ -120,44 +158,67 @@ const Task = () => {
     <>
       {(edit) && 
       <NewTask
+        method="add"
+        title={title}
+        description={description}
+        rank={rank}
+        isFinish={isFinish}
+        fn={addTask}
+        inputTitle={inputTitle}
+        inputDescription={inputDescription}
+        setEdit = {setEdit}
+      />}
+
+
+      {(edit) && 
+      <NewTask
+         method="edit"
          title={title}
          description={description}
          rank={rank}
          isFinish={isFinish}
-         addTask={editTask}
+         fn={editTask}
          inputTitle={inputTitle}
          inputDescription={inputDescription}
          setEdit = {setEdit}
          />}
 
-      {/* <div>今日还未添加任务，请点击下方添加待办事项</div> */}
       <div className={`${styles.flex} ${styles.largeView}`}>
           <div className={`${styles.flex} ${styles.timeContainer}`}>
             <div>{formatDate(hour)}:{formatDate(minute)}</div>
             <div className={`${styles.day}`}>{`${month}月${day}日`}</div>  
           </div>
-          <input type="text" id="task-title" name="task-title" minLength={2}  className={`${styles.input}`} placeholder='快速添加任务'></input>
+          <div className={`${styles.flex} ${styles.addBar}`}>
+            <input onChange={inputTitle} value={title} type="text" id="task-title" name="task-title" className={title.length > 1? `${styles.typing} ${styles.input}`: `${styles.input}`} placeholder='快速添加任务'></input>
+              <div className={`${styles.btn}`}>
+                <label htmlFor="task-title" ><i onClick={() => setTitle("")} className={` bx bx-x ${styles.clear}`}></i></label>
+                <div className={`${styles.more}`}>更多...</div>
+                <div onClick={addTask} >添加</div>
+              </div>
+          </div>
       </div>
+
+
 
       {/* 待完成面板 */}
       <Partition isFinish={false} taskArray={taskArray} text="待完成">
 
-        <ul>
+        <ul className={`${styles.unfinished}`}>
           {taskArray.filter( (item:taskItem) => !item.isFinish )
                     .map((item,i) => (
                       <li key={i}>
                         <div className={`${styles.flex} ${styles.taskItem}`}>
-                          <div className={`${styles.checkbox}`}>
+                          <div onClick={() => {finishTask(item.id)}} className={`${styles.checkbox}`}>
                             <i className={`bx bxs-heart-circle ${styles.finishIcon}`} ></i>
                           </div>
-                            <div className={`${styles.flex} ${styles.taskItemMain}`}>
-                              <div className={styles.title}>
-                                {item.title}
-                              </div>
-                              <div className={styles.description}>
-                                {item.description}
-                              </div>
+                          <div onClick={() => {finishTask(item.id)}} className={`${styles.flex} ${styles.taskItemMain}` }>
+                            <div className={styles.title}>
+                              {item.title}
                             </div>
+                            <div className={styles.description}>
+                              {item.description}
+                            </div>
+                          </div>
                           <div className={`${styles.flex} ${styles.delete}`}>
                             <i 
                               onClick={() => {
@@ -169,7 +230,7 @@ const Task = () => {
                                 setIsfinish(isFinish)
                                 }}
                               className={`bx bx-pen ${styles.edit} ${styles.transfrom}`}></i>
-                            <i onClick={() => {finishTask(item.id)}} className={`bx bx-x ${styles.transfrom}`}></i>
+                            <i onClick={() => del(item.id)} className={`bx bx-x ${styles.transfrom}`}></i>
                           </div>
                       </div>
                     </li>

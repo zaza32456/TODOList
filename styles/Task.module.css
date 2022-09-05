@@ -141,7 +141,7 @@ ul > li > .taskItem > .checkbox {
     font-size: .9rem;
     height: 1em;
     padding: 1.3em 1em;
-    margin: 2em auto;
+    /* margin: 2em auto; */
     width:20%;
     border-radius: 3em;
     border: 1px solid rgb(115, 115, 115);
@@ -149,10 +149,85 @@ ul > li > .taskItem > .checkbox {
   }
 
   .input:focus { 
-    
     width: 68%; 
     border: 1.8px solid #111;
   }
+
+  .typing {
+    width: 68%; 
+    border: 1.8px solid #111;
+  }
+
+
+
+  .addBar {
+    margin: 2em auto;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn {
+    display: none;
+    align-items: center;
+  }
+
+  .typing + .btn {
+    position: relative;
+    right: .8em;
+
+    background-color: white;
+    display: flex;
+    font-size: .8rem;
+    margin-left: -9.7em;
+    border-radius: .6em;
+  }
+
+
+  .typing + .btn > div:last-child {
+    padding: .4em 1em;
+    font-size: .8rem;
+    line-height: 1.2;
+    cursor: pointer;
+    margin-left: .6em;
+
+    border-radius: 3em;
+    color: #222;
+    border: #222 solid 1.2px;
+    transition: .1s ease-out;
+  }
+
+  .typing + .btn > div:last-child:hover {
+    background-color: #333;
+    color: white;
+    transition: .1s ease-out;
+  }
+
+  .typing + .btn > .more {
+    padding: 0 .3em;
+    font-size: .8rem;
+    line-height: 2.2;
+    color: #666;
+    cursor: pointer;
+  }
+
+  .typing + .btn > .more:hover {
+    color:#333;
+    text-decoration: underline;
+  }
+
+  .clear {
+    padding: .3em .2em .2em;
+    display: block;
+    font-size: 1rem;
+    left: -1.2em;
+    cursor: pointer;
+    color: #666;
+  }
+
+  .clear:hover {
+    color: #333;
+  }
+
 
   .timeContainer {
     align-items: center;
@@ -182,15 +257,15 @@ ul > li > .taskItem > .checkbox {
   }
 
     /* 悬停在任务栏时完成图标放大 */
-  .unfinished > ul > li:hover > .taskItem {
+  .unfinished > li:hover > .taskItem {
     transition: .1s ease-out;
     cursor: pointer;
-    /* box-shadow: .2px 2px 4px #999; */
-    transform: translate(0px, -1px);
+    box-shadow: 1px 1px 1px #222;
+    transform: translate(-1px, -1px);
 
   }
 
-  .unfinished > ul > li:hover .finishIcon {
+  .unfinished > li:hover .finishIcon {
     transition: .18s ease-in;
     transform: scale(1.3, 1.3);
   }
