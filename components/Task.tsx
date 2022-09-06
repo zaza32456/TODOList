@@ -241,8 +241,8 @@ const Task = () => {
                                 setId(item.id)
                                 setTitle(item.title)
                                 setDescription(item.description)
-                                setRank(rank)
-                                setIsfinish(isFinish)
+                                setRank(item.rank)
+                                setIsfinish(item.isFinish)
                                 }}
                               className={`bx bx-pen ${styles.edit} ${styles.transfrom}`}></i>
                             <i onClick={() => del(item.id)} className={`bx bx-x ${styles.transfrom}`}></i>
