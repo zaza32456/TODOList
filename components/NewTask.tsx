@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from '../styles/NewTask.module.css' 
 
-export const NewTask = ({method, setEdit, title, description, rank, isFinish, fn , inputTitle, inputDescription}) => {
+export const NewTask = ({method, setEdit, title, description, setRank, rank, isFinish, fn , inputTitle, inputDescription}) => {
   // console.log(title)
+  const [rankMenu, setRankMenu] = useState(false)
+
+  // 选择优先级
+  const handleRank = (taskRank:0 | 1 | 2 | 3 ) => {
+    setRank(taskRank)
+    setRankMenu(!rankMenu)
+    console.log(rankMenu)
+    console.log(taskRank)
+  }
+
   return (
     <>
       <div className={`${styles.createTask}`}>
@@ -20,10 +30,20 @@ export const NewTask = ({method, setEdit, title, description, rank, isFinish, fn
         {/* 快速选择日期,循环任务和目标放在另外模块 */}
         <div className={`${styles.select}`}>
           {/* TODO:默认今日，点击打开选择日历 */}
-          <div>今天</div>
+          <div className={`${styles.date} ${styles.btn__base}`}>今天</div>
           {/* 选择优先级 ，默认4*/}
-          <div className={`${styles.rank}`}>优先级</div>
-          <div className={`${styles.inbox}`}>添加到待办箱</div>
+          <div onClick={() => setRankMenu(!rankMenu)} className={`${styles.rank} ${styles.btn__base}`}>{rank === 4? '优先级': `优先级 : P${rank + 1}`}
+            { rankMenu &&
+              <ul className={`${styles.isOpen}`}>
+                <li onClick={() => handleRank(0)} className={`${styles.btn__base}`}>P1</li>
+                <li onClick={() => handleRank(1)}  className={`${styles.btn__base}`}>P2</li>
+                <li onClick={() => handleRank(2)}  className={`${styles.btn__base}`}>P3</li>
+                <li onClick={() => handleRank(3)}  className={`${styles.btn__base}`}>P4</li>
+              </ul>
+            }
+          </div>
+
+          {/* <div className={`${styles.inbox}`}>添加到待办箱</div> */}
 
         </div>
 

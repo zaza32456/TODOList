@@ -48,18 +48,20 @@ const Task = () => {
   
   // 子组件回调方法、任务状态设置
   const [title, setTitle] = useState("")
+  const [quickTitle, setQuickTitle] = useState("")
   const [description, setDescription] = useState("")
   const [rank, setRank] = useState<0|1|2|3|4>(4)
   const [isFinish, setIsfinish] = useState(false)
-  const [id , setId] = useState("")
+  const [id, setId] = useState("")
   // 编辑面板开关状态
   const [edit, setEdit] = useState(false)
+  const [add, setAdd] = useState(false)
 
   // 清空状态
   const clearUp = () => {
     setTitle("")
     setDescription("")
-    setRank(3)
+    setRank(4)
     setId("")
   }
   
@@ -68,9 +70,9 @@ const Task = () => {
       console.log("click addTask")
       const taskObeject:taskItem = {
         id : (Math.random()+ new Date().getTime()).toString(32).slice(0,8),
-        title : title ,
+        title : quickTitle ,
         description : description,
-        rank : rank? rank : 3,
+        rank : rank,
         isFinish : false,
         date : new Date().toLocaleDateString(),
       }
@@ -83,6 +85,8 @@ const Task = () => {
           // 改变客户端状态
           setTaskArray(taskArray.concat(taskObeject))
           clearUp()
+          setQuickTitle("")
+          setAdd(false)
         })
 
   }
@@ -103,7 +107,7 @@ const Task = () => {
       .then(res =>{
         // 改变客户端状态
         setTaskArray(taskArray.map(item => item.id !==id?item:taskObeject))
-        
+        console.log("put", taskObeject)
         clearUp()
 
         setEdit(false)
@@ -115,6 +119,11 @@ const Task = () => {
     axios.delete(`http://localhost:3001/task/${id}`)
     const array = taskArray.filter(task => task.id !== id)
     setTaskArray(array)
+  }
+
+  const inputQuickTitle = (e) => {
+    console.log("QuickTitle", e.target.value)
+    setQuickTitle(e.target.value)
   }
 
   const inputTitle = (e) => {
@@ -151,31 +160,37 @@ const Task = () => {
         })
   },[])
 
+  // 关闭面板后清空state
+  useEffect(() => {
+    edit === false? clearUp(): null
+  },[edit,add])
 
   // console.log("taskArray1 = ", taskArray)
 
   return (
     <>
-      {(edit) && 
+      {(add) && 
       <NewTask
         method="add"
-        title={title}
+        title={quickTitle}
         description={description}
         rank={rank}
+        setRank={setRank}
         isFinish={isFinish}
         fn={addTask}
-        inputTitle={inputTitle}
+        inputTitle={inputQuickTitle}
         inputDescription={inputDescription}
-        setEdit = {setEdit}
+        setEdit = {setAdd}
       />}
 
-
+        {/* 编辑模式 */}
       {(edit) && 
       <NewTask
          method="edit"
          title={title}
          description={description}
          rank={rank}
+         setRank={setRank}
          isFinish={isFinish}
          fn={editTask}
          inputTitle={inputTitle}
@@ -189,11 +204,11 @@ const Task = () => {
             <div className={`${styles.day}`}>{`${month}月${day}日`}</div>  
           </div>
           <div className={`${styles.flex} ${styles.addBar}`}>
-            <input onChange={inputTitle} value={title} type="text" id="task-title" name="task-title" className={title.length > 1? `${styles.typing} ${styles.input}`: `${styles.input}`} placeholder='快速添加任务'></input>
+            <input autoComplete="off" onChange={inputQuickTitle} value={quickTitle} type="text" id="task-title" name="task-title" className={quickTitle.length > 0? `${styles.typing} ${styles.input}`: `${styles.input}`} placeholder='快速添加任务'></input>
               <div className={`${styles.btn}`}>
-                <label htmlFor="task-title" ><i onClick={() => setTitle("")} className={` bx bx-x ${styles.clear}`}></i></label>
-                <div className={`${styles.more}`}>更多...</div>
-                <div onClick={addTask} >添加</div>
+                <label htmlFor="task-title" ><i onClick={() => setQuickTitle("")} className={` bx bx-x ${styles.clear}`}></i></label>
+                <div onClick={() => setAdd(true)} className={`${styles.more}`}>更多...</div>
+                <div onClick={addTask}>添加</div>
               </div>
           </div>
       </div>
@@ -222,7 +237,7 @@ const Task = () => {
                           <div className={`${styles.flex} ${styles.delete}`}>
                             <i 
                               onClick={() => {
-                                setEdit(!edit) 
+                                setEdit(true) 
                                 setId(item.id)
                                 setTitle(item.title)
                                 setDescription(item.description)

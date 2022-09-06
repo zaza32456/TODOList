@@ -44,16 +44,20 @@
 
 }
 
-.select > div {
+.date,
+.rank {
+  padding: 2em 4em;
+}
+
+.btn__base {
   font-size: .1rem;
   border-radius: 8em;
-  padding: 2em 4em;
   color: #555;
   background-color: rgb(209, 209, 209);
   cursor: pointer;
 }
 
-.select > div:hover {
+.btn__base:hover {
   color: #fff;
   background-color: rgb(133, 225, 195);
 }
@@ -61,6 +65,30 @@
 .select div + div {
   margin-left: 4em;
 } 
+
+/* rank */
+.rank {
+  position: relative;
+
+}
+
+.rank > ul {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+
+  font-size: .1rem;
+  border-radius: 8em;
+  color: #555;
+  background-color: rgb(209, 209, 209);
+  cursor: pointer;
+}
+
+.rank > ul > li {
+  padding: 2em 6em;
+  margin-top: 0;
+}
 
 
 /* icon */

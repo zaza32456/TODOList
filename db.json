@@ -4,7 +4,7 @@
       "id": 2,
       "title": "把数据转移到JSON-server里",
       "description": "参考xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-      "rank": 4,
+      "rank": 3,
       "isFinish": false
     },
     {
@@ -12,14 +12,28 @@
       "title": "做核酸",
       "description": "楼下24小时核酸点",
       "rank": 4,
-      "isFinish": false
+      "isFinish": true
     },
     {
       "id": "1gc75h1f",
       "title": "测试添加任务",
       "description": "12345",
       "rank": 3,
-      "isFinish": false
+      "isFinish": true
+    },
+    {
+      "id": "1gc9frmg",
+      "title": "测试一下添加任务",
+      "description": "竹t",
+      "rank": 4,
+      "isFinish": true
+    },
+    {
+      "id": "1gc9juah",
+      "title": "suibianni ",
+      "description": "ytryryr",
+      "rank": 2,
+      "isFinish": true
     }
   ]
 }
