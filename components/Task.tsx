@@ -20,6 +20,22 @@ const Partition = ({text, isFinish, taskArray, children}) => {
   )
 }
 
+// ===========================   rank-color   ===========================
+const taskColor = (rank:0|1|2|3|4) => {
+  console.log("switchrank")
+  switch(rank) {
+    case(0):
+    console.log("rank", 0)
+      return `${styles.p1}`;
+    case(1):
+      return `${styles.p2}`;
+    case(2):
+      return `${styles.p3}`;
+    default:
+      break;
+  }
+
+}
 
 // ===========================   任务面板   ===========================
 
@@ -224,7 +240,9 @@ const Task = () => {
                       <li key={i}>
                         <div className={`${styles.flex} ${styles.taskItem}`}>
                           <div onClick={() => {finishTask(item.id)}} className={`${styles.checkbox}`}>
-                            <i className={`bx bxs-heart-circle ${styles.finishIcon}`} ></i>
+
+                            <i className={`bx bxs-heart-circle ${styles.finishIcon} ` + taskColor(item.rank)} ></i>
+
                           </div>
                           <div onClick={() => {finishTask(item.id)}} className={`${styles.flex} ${styles.taskItemMain}` }>
                             <div className={styles.title}>
@@ -247,7 +265,7 @@ const Task = () => {
                               className={`bx bx-pen ${styles.edit} ${styles.transfrom}`}></i>
                             <i onClick={() => del(item.id)} className={`bx bx-x ${styles.transfrom}`}></i>
                           </div>
-                      </div>
+                        </div>
                     </li>
           ))}
 
