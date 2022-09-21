@@ -37,6 +37,7 @@ const taskColor = (rank:0|1|2|3|4) => {
 
 }
 
+
 // ===========================   任务面板   ===========================
 
 const Task = () => {
@@ -72,6 +73,7 @@ const Task = () => {
   // 编辑面板开关状态
   const [edit, setEdit] = useState(false)
   const [add, setAdd] = useState(false)
+  const [confirm, setConfirm] = useState(false)
 
   // 清空状态
   const clearUp = () => {
@@ -135,6 +137,8 @@ const Task = () => {
     axios.delete(`http://localhost:3001/task/${id}`)
     const array = taskArray.filter(task => task.id !== id)
     setTaskArray(array)
+
+    clearUp()
   }
 
   const inputQuickTitle = (e) => {
@@ -229,6 +233,18 @@ const Task = () => {
           </div>
       </div>
 
+    {/* 删除确认 */}
+    { confirm && 
+      <div className={`${styles.confirm}`}>
+        <div className={`${styles.mask}`}></div>
+          <div className={`${styles.text}`}>
+          确认删除任务？
+          <div>
+            <div onClick={() => {setConfirm(false),del(id)}}>确认</div><div onClick={() => {setConfirm(false)}}>取消</div>
+          </div>
+        </div>
+      </div>
+    }
 
 
       {/* 待完成面板 */}
@@ -263,7 +279,7 @@ const Task = () => {
                                 setIsfinish(item.isFinish)
                                 }}
                               className={`bx bx-pen ${styles.edit} ${styles.transfrom}`}></i>
-                            <i onClick={() => del(item.id)} className={`bx bx-x ${styles.transfrom}`}></i>
+                            <i onClick={() => {setConfirm(true), setId(item.id)}} className={`bx bx-x ${styles.transfrom}`}></i>
                           </div>
                         </div>
                     </li>

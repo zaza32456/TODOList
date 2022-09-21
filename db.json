@@ -4,36 +4,22 @@
       "id": 3,
       "title": "做核酸",
       "description": "楼下24小时核酸点",
-      "rank": 0,
+      "rank": 3,
       "isFinish": false
     },
     {
       "id": "1gc75h1f",
       "title": "测试添加任务",
       "description": "12345",
-      "rank": 3,
-      "isFinish": false
-    },
-    {
-      "id": "1gc9frmg",
-      "title": "测试一下添加任务",
-      "description": "竹t",
-      "rank": 1,
-      "isFinish": false
-    },
-    {
-      "id": "1gc9juah",
-      "title": "suibianni ",
-      "description": "ytryryr",
-      "rank": 2,
-      "isFinish": false
+      "rank": 0,
+      "isFinish": true
     },
     {
       "id": "1gcet92h",
       "title": "完成CSS",
       "description": "参考XXX",
       "rank": 2,
-      "isFinish": false
+      "isFinish": true
     }
   ]
 }

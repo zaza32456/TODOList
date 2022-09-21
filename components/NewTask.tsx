@@ -1,9 +1,14 @@
 import React, { useState } from 'react'
 import styles from '../styles/NewTask.module.css' 
+import type { DatePickerProps } from 'antd';
+import { DatePicker, Space } from 'antd';
+import Date from './DateSelect';
+
 
 export const NewTask = ({method, setEdit, title, description, setRank, rank, isFinish, fn , inputTitle, inputDescription}) => {
   // console.log(title)
   const [rankMenu, setRankMenu] = useState(false)
+
 
   // 选择优先级
   const handleRank = (taskRank:0 | 1 | 2 | 3 ) => {
@@ -15,6 +20,10 @@ export const NewTask = ({method, setEdit, title, description, setRank, rank, isF
 
   return (
     <>
+      <div className={`${styles.mask}`}></div>
+
+
+
       <div className={`${styles.createTask}`}>
 
         <div onClick={() => setEdit(false)} className={`${styles.cancel}`}><i className={`bx bx-x`}></i></div>
@@ -29,9 +38,16 @@ export const NewTask = ({method, setEdit, title, description, setRank, rank, isF
 
         {/* 快速选择日期,循环任务和目标放在另外模块 */}
         <div className={`${styles.select}`}>
+          
           {/* TODO:默认今日，点击打开选择日历 */}
-          <div className={`${styles.date} ${styles.btn__base}`}>今天</div>
+          <div className={`${styles.date} ${styles.btn__base}`}>今天
+            <div className={`${styles.datebar}`}>
+              <Date />
+            </div>
+          </div>
+          
           {/* 选择优先级 ，默认4*/}
+
           <div onClick={() => setRankMenu(!rankMenu)} className={`${styles.rank} ${styles.btn__base}`}>{rank === 4? '优先级': `优先级 : P${rank + 1}`}
             { rankMenu &&
               <ul className={`${styles.isOpen}`}>
@@ -47,10 +63,10 @@ export const NewTask = ({method, setEdit, title, description, setRank, rank, isF
 
         </div>
 
-        <div className={`${styles.icon}`}>
+        {/* <div className={`${styles.icon}`}>
           <div>循环icon</div>
           <div>提醒icon</div>
-        </div>
+        </div> */}
 
         
         <div onClick={fn} className={`${styles.save}`}>{method === 'edit' ? '保 存' : '添 加'}</div>

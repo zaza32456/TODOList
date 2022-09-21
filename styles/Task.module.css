@@ -131,7 +131,7 @@ ul > li > .taskItem > .checkbox {
   }
 
   .largeView  {
-    margin-top: .6em;
+    margin-top: 2.5rem;
     display: inherit;
     /* font-size: 1.2rem;
     height: 2.4em;
@@ -322,5 +322,68 @@ ul > li > .taskItem > .checkbox {
   .unmake:hover {
     color: #333;
   }
+
+  .confirm {
+    position: fixed;
+    z-index: 40;
+  }
+
+  .mask {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #00000020;
+  }
+
+  .confirm > .text {
+    position: fixed;
+    background-color: white;
+    top: 45%;
+    font-size: .8rem;
+    left: calc(26% - 3em);
+    right: calc(26% - 3em);
+    border-radius: .8em;
+    z-index: 50;
+    border: 1px solid #555;
+
+    text-align: center;
+    padding-top: 1.6em;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    min-height: 6em;
+  }
+
+  .text > div { 
+    display: flex;
+    width: 100%;
+    margin-top: .4em;
+    align-content: space-between;
+    justify-content: space-around;
+  }
+
+  .text > div > div {
+    padding: 0 1.2em;
+    border-radius: .4em;
+    color: white;
+    background-color: #999;
+    cursor: pointer;
+  }
+
+  .text > div > div:hover {
+    color: rgb(216, 216, 216);
+    background-color: #222;
+  }
+
+  .text > div > div + div {
+    color: #222;
+    background-color: white;
+    border: 1px #222 solid;
+  }
+
 }
 

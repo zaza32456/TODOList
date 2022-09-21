@@ -21,7 +21,6 @@ const Home: NextPage = () => {
       <Header />
 
 
-
       <main className={`${styles.main}`}>
         <Task />
       </main>

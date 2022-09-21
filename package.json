@@ -10,6 +10,7 @@
     "server": "json-server --watch db.json --port 3001"
   },
   "dependencies": {
+    "antd": "^4.23.1",
     "axios": "^0.27.2",
     "boxicons": "^2.1.2",
     "next": "12.2.5",
